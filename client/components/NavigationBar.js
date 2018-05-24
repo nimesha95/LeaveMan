@@ -1,4 +1,5 @@
 import React from "react";
+import {Link } from "react-router-dom";
 
 export default () => {
   return (
@@ -17,9 +18,9 @@ export default () => {
             <span className="icon-bar" />
             <span className="icon-bar" />
           </button>
-          <a className="navbar-brand" href="#">
-            Brand
-          </a>
+          <Link to="/" className="navbar-brand">
+            LeaveMan
+          </Link>
         </div>
 
         <div
@@ -28,7 +29,7 @@ export default () => {
         >
           <ul className="nav navbar-nav navbar-right">
             <li>
-              <a href="#">Link</a>
+              <Link to="/signup">Singup</Link>
             </li>
           </ul>
         </div>
