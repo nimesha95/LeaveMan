@@ -1,7 +1,15 @@
 import React from 'react';
+import { hot } from 'react-hot-loader'
+import NavigationBar from './NavigationBar'
 
-export default () => {
-    return (
-        <h1>Hello from react </h1>
-    );
+class App extends React.Component{
+    render(){
+        return(
+            <div className="container">
+                <NavigationBar />
+            </div>
+        );
+    }
 }
+
+export default hot(module)(App)
