@@ -1,11 +1,13 @@
 import React from 'react';
 import { hot } from 'react-hot-loader'
-
+import NavigationBar from './NavigationBar'
 
 class App extends React.Component{
     render(){
         return(
-            <h1>Hello from the other side </h1>
+            <div className="container">
+                <NavigationBar />
+            </div>
         );
     }
 }
