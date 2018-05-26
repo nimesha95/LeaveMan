@@ -2,6 +2,8 @@ var express = require('express');
 import validator from 'validator';
 import isEmpty from 'lodash/isEmpty';
 
+var User = require('../models/user');
+
 var router = express.Router();
 
 function validateInput(data){
@@ -31,7 +33,19 @@ router.post('/',function (req, res) {
     const {errors,isValid} = validateInput(req.body);
 
     if(isValid){
-        res.json({sucess: true});
+        var newUser = new User({
+			username: req.body.username,
+			password: req.body.password,    
+        });
+
+		User.createUser(newUser, function (err, user) {
+			if (err){
+                res.status(400).json(err);
+            }
+            else{
+                res.json({sucess: true});
+            }
+		});
     }
     else{
         res.status(400).json(errors);
