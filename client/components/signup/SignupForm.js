@@ -28,7 +28,13 @@ class SignupForm extends React.Component {
     this.props
       .userSignupRequest(this.state)
       .then(
-        () => {},
+        () => {
+          this.props.addFlashMessage({
+            type: 'success',
+            text: 'You have Signeup succesfully'
+          })
+          this.context.router.history.push("/");
+        },
         ({ response }) => this.setState({ errors: response.data , isLoading:false})
       );
   }
@@ -38,7 +44,6 @@ class SignupForm extends React.Component {
     return (
       <form onSubmit={this.onSubmit}>
         <h1>Join US </h1>
-
         <div className={classnames("form-group",{'has-error': errors.username})}>
           <label className="control-label">Username</label>
           <input
@@ -84,7 +89,12 @@ class SignupForm extends React.Component {
 }
 
 SignupForm.propTypes = {
-  userSignupRequest: PropTypes.func.isRequired
+  userSignupRequest: PropTypes.func.isRequired,
+  addFlashMessage: PropTypes.func.isRequired
 };
+
+SignupForm.contextTypes ={
+  router: PropTypes.object
+}
 
 export default hot(module)(SignupForm);
