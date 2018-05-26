@@ -35,7 +35,13 @@ class SignupForm extends React.Component {
           })
           this.context.router.history.push("/");
         },
-        ({ response }) => this.setState({ errors: response.data , isLoading:false})
+        ({ response }) => {
+          this.props.addFlashMessage({
+            type: 'error',
+            text: 'Username Already exists'
+          })
+          this.setState({ errors: response.data , isLoading:false})
+        }
       );
   }
 
