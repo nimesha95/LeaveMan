@@ -3,7 +3,7 @@ import { hot } from 'react-hot-loader'
 import LoginForm from './LoginForm';
 import {PropTypes} from 'prop-types';
 import { connect } from "react-redux";
-import {login} from '../../actions/login';
+import {login} from '../../actions/authAction';
 import {addFlashMessage} from '../../actions/flashMessages';
 
 class LoginPage extends React.Component{
