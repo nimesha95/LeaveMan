@@ -14,6 +14,7 @@ import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackConfig from '../webpack.config.dev';
 
 var users = require('./routes/users');
+var auth = require('./routes/auth');
 
 let app = express();
 
@@ -33,5 +34,6 @@ app.get('/*',(req,res)=>{
 });
 
 app.use('/api/users', users);
+app.use('/api/auth', auth);
 
 app.listen(3000,() => console.log("Server is running at port 3000"))
