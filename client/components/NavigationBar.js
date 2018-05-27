@@ -1,9 +1,34 @@
 import React from "react";
 import {Link } from "react-router-dom";
+import {connect} from 'react-redux';
+import { hot } from 'react-hot-loader'
+import {PropTypes} from 'prop-types';
+import {logout} from '../actions/authAction';
 
-export default () => {
-  return (
-    <nav className="navbar navbar-default">
+class NavigationBar extends React.Component{
+  logout(e){
+    e.preventDefault();
+    this.props.logout();
+  }
+  
+  render(){
+    const {isAuthenticated} = this.props.auth;
+
+    const userLinks = (
+      <ul className="nav navbar-nav navbar-right">
+        <li><a href="#" onClick={this.logout.bind(this)}>Logout</a></li>
+      </ul>
+    );
+
+    const guestLinks = (
+      <ul className="nav navbar-nav navbar-right">
+        <li><Link to="/signup">Singup</Link></li>
+        <li><Link to="/signin">Login</Link></li>
+      </ul>
+    );
+
+    return(
+      <nav className="navbar navbar-default">
       <div className="container-fluid">
         <div className="navbar-header">
           <button
@@ -27,13 +52,23 @@ export default () => {
           className="collapse navbar-collapse"
           id="bs-example-navbar-collapse-1"
         >
-          <ul className="nav navbar-nav navbar-right">
-            <li>
-              <Link to="/signup">Singup</Link>
-            </li>
-          </ul>
+          {isAuthenticated ? userLinks : guestLinks}
         </div>
       </div>
     </nav>
-  );
-};
+    );
+  }
+}
+
+NavigationBar.propTypes = {
+  auth: PropTypes.object.isRequired,
+  logout: PropTypes.func.isRequired
+}
+
+function mapStateToProps(state){
+  return {
+    auth : state.auth
+  }
+}
+
+export default hot(module)(connect(mapStateToProps, {logout}))(NavigationBar);
