@@ -22,9 +22,10 @@ export default (req,res,next) => {
                     if (!user) {
                         res.status(400).json({error: "No such user"});
                     }
-
-                    req.currentUser = {username: user.username, _id: user._id};                    
-                    next();
+                    else{
+                        req.currentUser = {username: user.username, _id: user._id};                    
+                        next();
+                    }
                 });
             }
         })
