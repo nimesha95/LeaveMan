@@ -59,7 +59,7 @@ class SignupForm extends React.Component {
             name="username"
             className="form-control"
           />
-          {errors.passwordConfirmation && <span className="help-block">{errors.username}</span>}
+          {errors && <span className="help-block">{errors.username}</span>}
         </div>
 
         <div className={classnames("form-group",{'has-error': errors.password})}>
@@ -71,7 +71,7 @@ class SignupForm extends React.Component {
             name="password"
             className="form-control"
           />
-          {errors.passwordConfirmation && <span className="help-block">{errors.password}</span>}
+          {errors && <span className="help-block">{errors.password}</span>}
         </div>
 
         <div className={classnames("form-group",{'has-error': errors.passwordConfirmation})}>
@@ -83,7 +83,7 @@ class SignupForm extends React.Component {
             name="passwordConfirmation"
             className="form-control"
           />
-          {errors.passwordConfirmation && <span className="help-block">{errors.passwordConfirmation}</span>}
+          {errors && <span className="help-block">{errors.passwordConfirmation}</span>}
         </div>
 
         <div className="form-group">
